@@ -6,12 +6,9 @@
 - It centralizes the management of class dependencies, making the code easier to maintain and modify.
 - Can pass different dependence using ngmodules
 - Injection Options
-
-
-    Provider in @Injectable
-    Provider in NgModule
-    (use factory, useValue,useClass,useExisting)
-    Provider in Component
+    - Provider in @Injectable
+    - Provider in NgModule (use factory, useValue,useClass,useExisting)
+    - Provider in Component
 
 
 ## 2)
