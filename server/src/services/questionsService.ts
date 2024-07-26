@@ -1,4 +1,5 @@
 import {IQuestion, Question} from "../db/QuestionSchema";
+import {QuestionDto} from "../dto/QuestionDto";
 
 const DEFAULT_QUESTIONS = [{
   questions: 'What?',
@@ -17,8 +18,10 @@ interface Question{
 }
 // TODO: use any storage to save the questions
 export class QuestionsService {
-  static getQuestions() {
-    return Question.find().exec();
+
+  static async getQuestions():Promise<any> {
+    const response = await Question.find().exec()
+    return response.map((question: any) => new QuestionDto(question._id, question.question, question.answer));
   }
 
   static addQuestion(question: IQuestion) {

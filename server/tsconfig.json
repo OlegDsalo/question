@@ -8,7 +8,7 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "skipLibCheck": false,
-    "outDir": "dist",
+    "outDir": "src",
     "baseUrl": ".",
     "paths": {
       "*": [
@@ -17,6 +17,8 @@
     }
   },
   "include": [
-    "src/**/*"
-  ]
+    "src/**/*",
+    "src/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
 }

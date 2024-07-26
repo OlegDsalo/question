@@ -1,14 +1,13 @@
 import {Request, Response} from 'express';
 import {QuestionsService} from '../services/questionsService';
 import {IQuestion} from "../db/QuestionSchema";
-
 const QuestionsCtrl = {
 
   list: (req: Request, res: Response) => {
-    QuestionsService.getQuestions()
-      .then(questions => {
+      QuestionsService.getQuestions()
+      .then((questions:any) => {
         res.status(200).send(questions);
-      }).catch(e => {
+      }).catch((e:any) => {
         console.error('Failed to get Questions', e);
         res.status(500).send();
     });

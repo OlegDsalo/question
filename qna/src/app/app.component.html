@@ -1,17 +1,25 @@
 <div class="container-sm">
   <h3 class="mb-5">Welcome to our support management</h3>
+  <button *ngIf="selectedQuestion" (click)="clearInputs()" class="btn btn-sm btn-secondary">Clear inputs </button>
+
   <div class="row mb-5">
     <div class="col-12">
-      <form>
+      <form (ngSubmit)="onSubmit()">
         <div class="mb-3">
-          <label for="exampleInputQ" class="form-label">Question</label>
-          <input type="text" class="form-control" id="exampleInputQ" aria-describedby="qHelp">
+          <label class="form-label">Question</label>
+          <input *ngIf="!selectedQuestion" type="text" class="form-control" [(ngModel)]="newQuestion.question"
+                 name="title" required>
+          <input *ngIf="selectedQuestion" type="text" class="form-control" [(ngModel)]="selectedQuestion.question"
+                 name="title" required>
         </div>
         <div class="mb-3">
-          <label for="exampleInputQ" class="form-label">Answer</label>
-          <textarea class="form-control" id="exampleInputA" aria-describedby="aHelp" rows="3"></textarea>
+          <label class="form-label">Answer</label>
+          <textarea *ngIf="!selectedQuestion"
+                    class="form-control" [(ngModel)]="newQuestion.answer" name="answer" rows="3" required></textarea>
+          <textarea *ngIf="selectedQuestion" class="form-control" [(ngModel)]="selectedQuestion.answer" name="answer"
+                    rows="3" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="submit" class="btn btn-primary">{{selectedQuestion ? 'Update' : 'Save' }}</button>
       </form>
     </div>
   </div>
@@ -20,10 +28,20 @@
 
   <div class="row mb-5">
     <div class="col-12">
-      <ul class="list-group">
-        <li class="list-group-item">
-          I'll be a question on the list
-          <!-- Tip: Answer should be hidden - this section should work similar to Q&A -->
+      <ul class="list-group" *ngIf="questions.length">
+        <li *ngFor="let question of questions" class="list-group-item">
+          <div  class="question" (click)="toggleAnswerVisibility(question)">
+            {{ question.question }}
+          </div>
+          <div *ngIf="question.showAnswer" class="mt-2">
+            <div class="answer">
+              {{ question.answer}}
+            </div>
+            <div class="actions">
+              <button (click)="selectQuestion(question)" class="btn btn-sm btn-secondary">Edit</button>
+              <button (click)="deleteQuestion(question.id)" [disabled]="selectedQuestion?.id == question.id"  class="btn btn-sm btn-danger">Delete</button>
+            </div>
+          </div>
         </li>
       </ul>
     </div>

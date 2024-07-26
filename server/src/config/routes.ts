@@ -1,6 +1,6 @@
 import express from 'express';
-import QuestionsCtrl from '../controllers/questionsCtrl';
 import rateLimit from 'express-rate-limit';
+import QuestionsCtrl from "../controllers/questionsCtrl";
 
 const router = express.Router();
 
