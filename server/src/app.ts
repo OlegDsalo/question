@@ -5,9 +5,9 @@ import cors from 'cors'
 const app = express();
 const port = 8080;
 const corsOptions = {
-  origin: 'http://localhost:4200', // Replace with your frontend's URL
+  origin: 'http://localhost:4200',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // Enable cookies
+  credentials: true,
   optionsSuccessStatus: 204
 };
 app.use(cors());
